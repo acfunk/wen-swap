@@ -14,10 +14,10 @@ module.exports = {
         "secondary-black": "#000a02",
         "asset-detail-bg": "#1e1e1e",
         "secondary-green": "#327A32",
-        "primary-blue": "#f57b14",
-        "secondary-blue": "#f57b14",
+        "primary-blue": "gradient-to-r from-orange to-yellow",
+        "secondary-blue": "gradient-to-r from-orange to-yellow",
         "orange":"#f57b14",
-        "yellow":"#ffee01:,
+        "yellow":"#ffee01",
       },
       fontSize: {
         xxs: "0.6rem",
