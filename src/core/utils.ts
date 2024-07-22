@@ -56,11 +56,11 @@ export async function getAccountData(
 }
 
 export function getAssetDirectionUrl(assetId: number) {
-  return "https://we.thurstober.com/asset/" + assetId;
+  return "https://wallet.wen.tools/asset/" + assetId;
 }
 
 export function getWalletDirectionUrl(walletAddress: string) {
-  return "https://we.thurstober.com/account/" + walletAddress;
+  return "https://wallet.wen.tools/account/" + walletAddress;
 }
 
 export async function getOwnerAddressOfAsset(assetId: number) {
