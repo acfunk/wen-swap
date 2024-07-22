@@ -10,7 +10,7 @@ export default function Home() {
       <div className="flex flex-col md:flex-row mx-auto gap-y-4 md:gap-x-4 items-center py-2">
         <Link
           to="/create"
-          className="p-2 w-36 text-center bg-primary-blue text-black font-semibold rounded-md hover:bg-secondary-blue transition-all"
+          className="p-2 w-36 text-center bg-gradient-to-r from-orange to-yellow text-black font-semibold rounded-md hover:bg-gradient-to-r from-orange to-yellow transition-all"
         >
           Create Swap
         </Link>
