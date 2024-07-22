@@ -19,7 +19,7 @@ export const INDEXER_URL =
 
 export const IPFS_ENDPOINT = "https://ipfs.algonode.xyz/ipfs";
 
-export const TX_NOTE = "via Swap Shop";
+export const TX_NOTE = "via Wen Swap";
 
 export const MAX_SWAP_TRANSACTIONS = 16;
 export const SHARE_TRANSACTION_RECEIVER_ADDRESS =
