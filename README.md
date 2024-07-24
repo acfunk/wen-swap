@@ -1,4 +1,4 @@
-# Swap Shop
+# Wen Swap
 
 The ability to claim a designed NFT, the ability to automatically claim a giveaway win, the ability to buy tokens, and the ability to create a swap shop.
 To increase the functionality, also be making a Discord bot as an [example](https://github.com/algovado/swap-shop?tab=readme-ov-file#example-codes-for-using-your-botsprojects)
@@ -185,7 +185,7 @@ print(f"{SWAP_SHOP_URL}{signed_txns_ids}")
 ```
 ## Deployment
 
-Changes that are merged to `main` will be deployed automatically to [Swap Shop](https://swapshop.thurstober.com/).
+Changes that are merged to `main` will be deployed automatically
 
 ## Contributing
 
