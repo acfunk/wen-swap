@@ -35,7 +35,7 @@ export default function NetworkSelect() {
                 color: "blue",
               },
             }}
-            style={{ color: "#00E8EA" }}
+            style={{ color: "#f57b14" }}
           />
         }
         classes={{ label: "text-white" }}
