@@ -212,9 +212,9 @@ export default function CreateSwap() {
       </form>
       <Button
         sx={{
-          backgroundColor: "#00E8EA",
+          backgroundColor: "#f57b14",
           color: "black",
-          ":hover": { backgroundColor: "#008182" },
+          ":hover": { backgroundColor: "#e37212" },
           display: "flex",
           margin: "0 auto",
         }}
@@ -243,9 +243,9 @@ export default function CreateSwap() {
                 connectionState.walletAddress === ""
               }
               sx={{
-                backgroundColor: "#00E8EA",
+                backgroundColor: "#f57b14",
                 color: "black",
-                ":hover": { backgroundColor: "#008182" },
+                ":hover": { backgroundColor: "#e37212" },
               }}
               variant="contained"
               onClick={createSwapTransactions}
@@ -266,9 +266,9 @@ export default function CreateSwap() {
               signedSwapTransactions === null
             }
             sx={{
-              backgroundColor: "#00E8EA",
+              backgroundColor: "#f57b14",
               color: "black",
-              ":hover": { backgroundColor: "#008182" },
+              ":hover": { backgroundColor: "#e37212" },
             }}
             variant="contained"
             onClick={createShareTransaction}
