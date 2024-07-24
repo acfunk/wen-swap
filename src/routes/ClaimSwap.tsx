@@ -186,14 +186,14 @@ export default function ClaimSwap() {
               <Button
                 disabled={connectionState.walletAddress === ""}
                 sx={{
-                  backgroundColor: "#00E8EA",
+                  backgroundColor: "#f57b14",
                   color: "black",
-                  ":hover": { backgroundColor: "#008182" },
+                  ":hover": { backgroundColor: "#e37212" },
                 }}
                 variant="contained"
                 onClick={signSwapTransactions}
               >
-                Sign Swap Transactions
+                Step 1: Sign Swap Transactions
               </Button>
               <p className="text-primary-gray text-center text-sm mt-2">
                 This swap will not be valid on the network until all transfers
@@ -210,14 +210,14 @@ export default function ClaimSwap() {
                 sendError !== ""
               }
               sx={{
-                backgroundColor: "#00E8EA",
+                backgroundColor: "#f57b14",
                 color: "black",
-                ":hover": { backgroundColor: "#008182" },
+                ":hover": { backgroundColor: "#e37212" },
               }}
               variant="contained"
               onClick={sendTransactions}
             >
-              Send Transactions
+              Step 2: Claim
             </Button>
           ) : step === COMPLETED_STEP && sendError === "" ? (
             <>
