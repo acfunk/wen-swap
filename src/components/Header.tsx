@@ -19,7 +19,7 @@ export function Header() {
           <Typography
             component="div"
             sx={{
-              fontFamily: "Josefin Slab",
+              fontFamily: "Poppins",
               flexGrow: 1,
               fontWeight: 400,
               fontSize: {
@@ -35,7 +35,7 @@ export function Header() {
               visibility: { xs: "hidden", sm: "visible" },
             }}
           >
-            <Link to="/">Wen Swap</Link>
+            <Link className="text-primary-blue" to="/">wen swap</Link>
           </Typography>
           <ConnectButton />
         </Toolbar>
