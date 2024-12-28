@@ -611,7 +611,9 @@ export async function getSwapTransactionsFromNotes(
   return swapTransactions;
 }
 
-function decodeTransaction(transaction: Uint8Array): DecodedTransactionType {
+export function decodeTransaction(
+  transaction: Uint8Array
+): DecodedTransactionType {
   try {
     return {
       tx: decodeUnsignedTransaction(transaction),
