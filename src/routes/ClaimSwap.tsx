@@ -6,6 +6,7 @@ import {
   sendSignedTransaction,
   decodeTransactionv2,
   mergeSignedTransactions,
+  decodeTransaction,
 } from "../core/utils";
 import { useEffect, useMemo, useState } from "react";
 import { SwapTransaction } from "../core/types";
@@ -24,9 +25,8 @@ function useQuery() {
 
 const LOADING_STEP = 0;
 const START_STEP = 1;
-const SIGNED_TRANSACTIONS_STEP = 2;
-const COMPLETED_STEP = 3;
-const PAGE_LOADING = 4;
+const COMPLETED_STEP = 2;
+const PAGE_LOADING = 3;
 
 export default function ClaimSwap() {
   const connectionState = useConnectionStore((state) => state);
@@ -39,9 +39,6 @@ export default function ClaimSwap() {
       isSigned: boolean;
       transactionBytes: Uint8Array;
     }[]
-  );
-  const [signedTransactions, setSignedTransactions] = useState(
-    [] as Uint8Array[]
   );
   const [sendError, setSendError] = useState("");
 
@@ -88,17 +85,33 @@ export default function ClaimSwap() {
         signedTransactions,
         shareTransactions.map((tx) => tx.transactionBytes)
       );
-      setSignedTransactions(mergedTxns);
-      setStep(SIGNED_TRANSACTIONS_STEP);
-      toast.success("Transactions signed successfully");
+      const decodeTxns = mergedTxns.map((tx) => decodeTransaction(tx));
+      const unSignedIds = decodeTxns
+        .map((tx, i) => {
+          return tx.isSigned ? null : i + 1;
+        })
+        .filter((id) => id !== null);
+      if (unSignedIds.length > 0) {
+        toast.error(
+          `${
+            unSignedIds.length > 0 ? "Transaction" : "Transactions"
+          } ${unSignedIds.join(", ")} ${
+            unSignedIds.length > 0 ? "is" : "are"
+          } not signed to send transactions`
+        );
+        setStep(START_STEP);
+      } else {
+        toast.info("All transactions are signed\nSending transactions...");
+        await sendTransactions(mergedTxns);
+      }
     } catch (error) {
       console.error(error);
       toast.error("Error signing transactions");
-      setStep(SIGNED_TRANSACTIONS_STEP);
+      setStep(START_STEP);
     }
   };
 
-  const sendTransactions = async () => {
+  const sendTransactions = async (signedTransactions: Uint8Array[]) => {
     try {
       if (signedTransactions.length === 0) {
         toast.error("No signed transactions found");
@@ -111,7 +124,7 @@ export default function ClaimSwap() {
       const parsedError = parseClientError(error as AlgoClientError);
       toast.error("Transaction failed. Plese check the error.");
       setSendError(parsedError.message);
-      setStep(SIGNED_TRANSACTIONS_STEP);
+      setStep(START_STEP);
     }
   };
 
@@ -193,7 +206,7 @@ export default function ClaimSwap() {
                 variant="contained"
                 onClick={signSwapTransactions}
               >
-                Step 1: Sign Swap Transactions
+                Sign Swap Transactions & Claim
               </Button>
               <p className="text-primary-gray text-center text-sm mt-2">
                 This swap will not be valid on the network until all transfers
@@ -202,23 +215,6 @@ export default function ClaimSwap() {
                 be invalid.
               </p>
             </div>
-          ) : step === SIGNED_TRANSACTIONS_STEP ? (
-            <Button
-              disabled={
-                connectionState.walletAddress === "" ||
-                signedTransactions.length === 0 ||
-                sendError !== ""
-              }
-              sx={{
-                backgroundColor: "#f57b14",
-                color: "black",
-                ":hover": { backgroundColor: "#e37212" },
-              }}
-              variant="contained"
-              onClick={sendTransactions}
-            >
-              Step 2: Claim
-            </Button>
           ) : step === COMPLETED_STEP && sendError === "" ? (
             <>
               <div className="text-primary-green text-center animate-pulse">
